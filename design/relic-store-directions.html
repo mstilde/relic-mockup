@@ -1,0 +1,108 @@
+<style>
+  #relic-directions { width:100%; font-family:Inter,Arial,sans-serif; }
+  #relic-directions * { box-sizing:border-box; }
+  #relic-directions .direction { min-height:760px; overflow:hidden; background:#f6f5f1; color:#171717; }
+  #relic-directions .bar { padding:8px 24px; text-align:center; font-size:10px; letter-spacing:.16em; text-transform:uppercase; }
+  #relic-directions .nav { height:68px; padding:0 34px; display:flex; align-items:center; gap:30px; border-bottom:1px solid rgba(0,0,0,.11); }
+  #relic-directions .brand { font-size:22px; font-weight:600; letter-spacing:.22em; }
+  #relic-directions .links { display:flex; gap:24px; margin:auto; font-size:11px; font-weight:500; }
+  #relic-directions .icons { display:flex; gap:14px; }
+  #relic-directions button { border:0; background:none; color:inherit; font:inherit; }
+  #relic-directions .hero { position:relative; overflow:hidden; }
+  #relic-directions .photo { background-size:cover; background-position:center; }
+  #relic-directions .hero-photo { background-image:linear-gradient(90deg,rgba(12,12,12,.52),rgba(12,12,12,.03)),url('../public/editorial/hero-relic.png'); }
+  #relic-directions .leather-photo { background-image:url('../public/editorial/worn-leather.png'); }
+  #relic-directions .track-photo { background-image:url('../public/editorial/track-archive.png'); }
+  #relic-directions .cta { display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0 22px; border:1px solid currentColor; font-size:10px; font-weight:600; letter-spacing:.11em; text-transform:uppercase; }
+  #relic-directions .product-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  #relic-directions .product-art { aspect-ratio:4/5; display:flex; align-items:flex-end; padding:14px; background:linear-gradient(145deg,#ddd8ce,#bcb4a7); color:#fff; font-size:10px; letter-spacing:.11em; }
+  #relic-directions .product-info { display:flex; justify-content:space-between; gap:10px; padding-top:9px; font-size:11px; }
+
+  #relic-directions .dawn .bar { background:#18231d; color:#fff; }
+  #relic-directions .dawn .hero { height:390px; display:flex; align-items:center; padding:42px; color:#fff; }
+  #relic-directions .dawn .hero-photo { position:absolute; inset:0; }
+  #relic-directions .dawn .hero-copy { position:relative; max-width:430px; }
+  #relic-directions .dawn h1 { margin:0; max-width:430px; font-size:56px; font-weight:500; line-height:.96; letter-spacing:-.04em; }
+  #relic-directions .dawn .hero-copy p { max-width:350px; font-size:13px; line-height:1.6; }
+  #relic-directions .dawn .cta { margin-top:10px; background:#fff; color:#171717; border-color:#fff; }
+  #relic-directions .dawn .collection { padding:30px 34px 44px; }
+  #relic-directions .dawn .section-head { display:flex; justify-content:space-between; align-items:end; margin-bottom:18px; }
+  #relic-directions .dawn h2 { margin:0; font-size:24px; font-weight:500; }
+  #relic-directions .dawn .product-art:nth-child(1) { background:linear-gradient(145deg,#ddd8ce,#9a8b79); }
+
+  #relic-directions .prestige { background:#ede9e1; }
+  #relic-directions .prestige .bar { background:#b54127; color:#fff; }
+  #relic-directions .prestige .brand, #relic-directions .prestige h1, #relic-directions .prestige h2 { font-family:Georgia,serif; font-weight:400; }
+  #relic-directions .prestige .hero { height:530px; display:grid; grid-template-columns:42% 58%; }
+  #relic-directions .prestige .hero-copy { padding:58px 44px; display:flex; flex-direction:column; justify-content:center; }
+  #relic-directions .prestige h1 { margin:0; font-size:60px; line-height:.88; letter-spacing:-.045em; }
+  #relic-directions .prestige .hero-copy p { font-size:13px; line-height:1.7; color:#665f55; }
+  #relic-directions .prestige .cta { align-self:flex-start; margin-top:12px; background:#171717; color:#fff; }
+  #relic-directions .prestige .visual { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+  #relic-directions .prestige .visual .photo:last-child { margin-top:48px; }
+  #relic-directions .prestige .ticker { display:flex; justify-content:space-around; padding:22px; border-top:1px solid rgba(0,0,0,.15); border-bottom:1px solid rgba(0,0,0,.15); font-family:Georgia,serif; font-size:18px; }
+  #relic-directions .prestige .mini-products { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(0,0,0,.12); }
+  #relic-directions .prestige .mini { padding:17px; background:#ede9e1; font-size:11px; }
+
+  #relic-directions .street { background:#e8ff3f; color:#0b0b0b; }
+  #relic-directions .street .bar { background:#0b0b0b; color:#e8ff3f; }
+  #relic-directions .street .nav { border-color:#0b0b0b; }
+  #relic-directions .street .brand { font-weight:800; letter-spacing:-.06em; font-size:29px; }
+  #relic-directions .street .hero { height:430px; display:grid; grid-template-columns:55% 45%; border-bottom:2px solid #0b0b0b; }
+  #relic-directions .street .hero-copy { padding:36px; display:flex; flex-direction:column; justify-content:space-between; }
+  #relic-directions .street h1 { margin:0; font-size:68px; line-height:.82; letter-spacing:-.07em; text-transform:uppercase; }
+  #relic-directions .street .cta { align-self:flex-start; background:#0b0b0b; color:#e8ff3f; border:0; }
+  #relic-directions .street .track-photo { border-left:2px solid #0b0b0b; }
+  #relic-directions .street .drop { display:grid; grid-template-columns:1fr 1fr 1fr; min-height:210px; }
+  #relic-directions .street .drop > div { padding:20px; border-right:2px solid #0b0b0b; }
+  #relic-directions .street .drop .tile { background:#0b0b0b; color:#fff; display:flex; flex-direction:column; justify-content:space-between; }
+  #relic-directions .street .drop strong { font-size:23px; line-height:1; text-transform:uppercase; }
+  #relic-directions .street .drop span { font-size:10px; text-transform:uppercase; letter-spacing:.12em; }
+
+  @media (max-width:700px){
+    #relic-directions .direction { min-height:820px; }
+    #relic-directions .links { display:none; }
+    #relic-directions .nav { padding:0 18px; }
+    #relic-directions .icons { margin-left:auto; }
+    #relic-directions .dawn .hero { height:460px; padding:26px; align-items:flex-end; }
+    #relic-directions .dawn h1 { font-size:44px; }
+    #relic-directions .dawn .collection { padding:24px 18px; }
+    #relic-directions .product-grid { grid-template-columns:1fr 1fr; }
+    #relic-directions .product-grid > :nth-child(n+3) { display:none; }
+    #relic-directions .prestige .hero { height:620px; grid-template-columns:1fr; }
+    #relic-directions .prestige .hero-copy { padding:32px 24px; }
+    #relic-directions .prestige h1 { font-size:48px; }
+    #relic-directions .prestige .visual { min-height:290px; }
+    #relic-directions .prestige .ticker span:nth-child(n+3) { display:none; }
+    #relic-directions .street .hero { height:610px; grid-template-columns:1fr; }
+    #relic-directions .street .hero-copy { padding:26px; }
+    #relic-directions .street h1 { font-size:56px; }
+    #relic-directions .street .track-photo { border-left:0; border-top:2px solid #0b0b0b; min-height:260px; }
+    #relic-directions .street .drop > div:last-child { display:none; }
+    #relic-directions .street .drop { grid-template-columns:1fr 1fr; }
+  }
+</style>
+
+<div id="relic-directions" class="viz-carousel" aria-label="Direcciones visuales para la tienda RELIC" data-previous-label="Anterior" data-next-label="Siguiente">
+  <section class="direction dawn" data-variant="Dawn Modern" aria-label="Tienda minimalista inspirada en Shopify Dawn">
+    <div class="bar">Free shipping on orders over $180</div>
+    <header class="nav"><div class="brand">RELIC</div><nav class="links"><a href="#">New in</a><a href="#">Clothing</a><a href="#">Denim</a><a href="#">Journal</a></nav><div class="icons"><button aria-label="Search"><i data-lucide="search"></i></button><button aria-label="Shopping bag"><i data-lucide="shopping-bag"></i></button></div></header>
+    <div class="hero"><div class="photo hero-photo"></div><div class="hero-copy"><h1>The archive, reimagined.</h1><p>Curated vintage essentials selected for quality, character and a second life.</p><a class="cta" href="#">Shop new arrivals</a></div></div>
+    <div class="collection"><div class="section-head"><div><small>Just landed</small><h2>New arrivals</h2></div><a href="#">View all →</a></div><div class="product-grid"><article><div class="product-art">Leather / 1992</div><div class="product-info"><span>Wilson leather jacket</span><b>$148</b></div></article><article><div class="product-art">Denim / 1996</div><div class="product-info"><span>Levi's 501</span><b>$92</b></div></article><article><div class="product-art">Sport / 1998</div><div class="product-info"><span>Nike windbreaker</span><b>$116</b></div></article><article><div class="product-art">Work / 1994</div><div class="product-info"><span>Carhartt chore jacket</span><b>$168</b></div></article></div></div>
+  </section>
+
+  <section class="direction prestige" data-variant="Prestige Editorial" aria-label="Tienda editorial inspirada en Shopify Prestige" hidden>
+    <div class="bar">The autumn archive is live</div>
+    <header class="nav"><div class="brand">RELIC</div><nav class="links"><a href="#">Collection</a><a href="#">New arrivals</a><a href="#">The edit</a><a href="#">About</a></nav><div class="icons"><button aria-label="Search"><i data-lucide="search"></i></button><button aria-label="Shopping bag"><i data-lucide="shopping-bag"></i></button></div></header>
+    <div class="hero"><div class="hero-copy"><small>Curated vintage · Buenos Aires</small><h1>Clothes with a life before yours.</h1><p>Rare pieces, honest materials and silhouettes worth keeping.</p><a class="cta" href="#">Discover the edit</a></div><div class="visual"><div class="photo leather-photo"></div><div class="photo track-photo"></div></div></div>
+    <div class="ticker"><span>Hand selected</span><span>One of one</span><span>Professionally cleaned</span><span>Ready to wear</span></div>
+    <div class="mini-products"><div class="mini">01 · Leather archive</div><div class="mini">02 · Everyday denim</div><div class="mini">03 · 90s sportswear</div></div>
+  </section>
+
+  <section class="direction street" data-variant="Street Archive" aria-label="Tienda streetwear contemporánea" hidden>
+    <div class="bar">One piece · one history · one chance</div>
+    <header class="nav"><div class="brand">RELIC®</div><nav class="links"><a href="#">Latest drop</a><a href="#">Outerwear</a><a href="#">Bottoms</a><a href="#">Archive</a></nav><div class="icons"><button aria-label="Search"><i data-lucide="search"></i></button><button aria-label="Shopping bag"><i data-lucide="shopping-bag"></i></button></div></header>
+    <div class="hero"><div class="hero-copy"><span>Drop 001 / Buenos Aires</span><h1>Past gear.<br>Future fit.</h1><a class="cta" href="#">Enter the drop</a></div><div class="photo track-photo"></div></div>
+    <div class="drop"><div class="tile"><span>Featured</span><strong>Track<br>archive</strong><span>Shop collection →</span></div><div><span>New find</span><strong>Wilson leather<br>1992</strong></div><div><span>Uniform</span><strong>Carhartt<br>workwear</strong></div></div>
+  </section>
+</div>

@@ -1,0 +1,3 @@
+import { collection } from "@/lib/api";
+import { searchProducts } from "@/lib/services/products";
+export async function GET(request:Request){const u=new URL(request.url),p=u.searchParams;const value=(key:string)=>p.get(key)||undefined;const products=searchProducts({q:value("q"),category:value("category"),brand:value("brand"),size:value("size"),color:value("color"),minPrice:p.has("minPrice")?Number(p.get("minPrice")):undefined,maxPrice:p.has("maxPrice")?Number(p.get("maxPrice")):undefined,inStock:p.get("inStock")==="true"});return collection(products,{page:Number(p.get("page"))||1,limit:Number(p.get("limit"))||50})}

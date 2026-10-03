@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id             String          @id @default(cuid())
+  sku            String          @unique
+  name           String
+  description    String
+  brand          String
+  size           String
+  color          String
+  material       String
+  price          Decimal         @db.Decimal(10, 2)
+  stock          Int             @default(0)
+  reservedStock  Int             @default(0)
+  image          String?
+  categoryId     String
+  category       Category        @relation(fields: [categoryId], references: [id])
+  saleItems      SaleItem[]
+  stockMovements StockMovement[]
+  reservations   Reservation[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@index([name])
+  @@index([brand])
+  @@index([categoryId, size])
+}
+
+model Customer {
+  id           String        @id @default(cuid())
+  name         String
+  phone        String
+  email        String        @unique
+  sales        Sale[]
+  reservations Reservation[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([name])
+  @@index([phone])
+}
+
+model Sale {
+  id            String        @id @default(cuid())
+  number        String        @unique
+  customerId    String
+  customer      Customer      @relation(fields: [customerId], references: [id])
+  items         SaleItem[]
+  subtotal      Decimal       @db.Decimal(10, 2)
+  discount      Decimal       @default(0) @db.Decimal(10, 2)
+  total         Decimal       @db.Decimal(10, 2)
+  paymentMethod PaymentMethod
+  status        SaleStatus    @default(completed)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([customerId])
+  @@index([createdAt])
+  @@index([status])
+}
+
+model SaleItem {
+  id        String  @id @default(cuid())
+  saleId    String
+  sale      Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  unitPrice Decimal @db.Decimal(10, 2)
+  subtotal  Decimal @db.Decimal(10, 2)
+
+  @@index([saleId])
+  @@index([productId])
+}
+
+model StockMovement {
+  id        String            @id @default(cuid())
+  productId String
+  product   Product           @relation(fields: [productId], references: [id])
+  type      StockMovementType
+  quantity  Int
+  reason    String
+  createdAt DateTime          @default(now())
+
+  @@index([productId, createdAt])
+}
+
+model Reservation {
+  id         String            @id @default(cuid())
+  code       String            @unique
+  customerId String
+  customer   Customer          @relation(fields: [customerId], references: [id])
+  productId  String
+  product    Product           @relation(fields: [productId], references: [id])
+  quantity   Int
+  status     ReservationStatus @default(pending)
+  expiresAt  DateTime
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+
+  @@index([customerId])
+  @@index([productId])
+  @@index([status, expiresAt])
+}
+
+enum PaymentMethod {
+  cash
+  transfer
+  card
+}
+
+enum SaleStatus {
+  completed
+  refunded
+  pending
+}
+
+enum StockMovementType {
+  purchase
+  sale
+  adjustment
+  reservation
+  release
+}
+
+enum ReservationStatus {
+  pending
+  confirmed
+  cancelled
+  expired
+}

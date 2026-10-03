@@ -1,0 +1,13 @@
+services:
+  relic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://unused:unused@localhost:5432/unused}
+      DIRECT_URL: ${DIRECT_URL:-postgresql://unused:unused@localhost:5432/unused}
+      API_KEY: ${API_KEY:-}
+      DEMO_MODE: ${DEMO_MODE:-true}
+    restart: unless-stopped
