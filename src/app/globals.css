@@ -4,17 +4,20 @@
 
 :root { color-scheme: light; }
 * { border-color: #e4e0d7; }
-html { background: #ffffff; }
+html { max-width: 100%; overflow-x: clip; background: #ffffff; }
 body { color: #111111; background: #ffffff; font-family: var(--font-space-grotesk), sans-serif; letter-spacing: -.012em; }
 ::selection { background: #445747; color: white; }
 html { scroll-behavior: smooth; }
-body { overflow-x: hidden; }
+body { max-width: 100%; overflow-x: clip; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 .editorial-serif { font-family: var(--font-space-grotesk), sans-serif; font-weight: 500; letter-spacing: -.065em; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .text-balance { text-wrap: balance; }
+
+:focus-visible { outline: 2px solid #b64e2b; outline-offset: 3px; }
+button, a, select, input { -webkit-tap-highlight-color: transparent; }
 
 @layer components {
   .card { @apply rounded-2xl border border-stone-200/80 bg-white shadow-soft; }

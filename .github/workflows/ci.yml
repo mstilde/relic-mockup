@@ -30,3 +30,9 @@ jobs:
 
       - name: Compilar producción
         run: npm run build
+
+      - name: Instalar navegador de pruebas
+        run: npx playwright install --with-deps chromium
+
+      - name: Probar recorridos móviles
+        run: npm run test:e2e
