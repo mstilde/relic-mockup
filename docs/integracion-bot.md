@@ -6,7 +6,7 @@ Este documento permite conectar un asistente conversacional al catálogo públic
 
 Cuando una persona describa una prenda, el asistente debe consultar la API de catálogo, mostrar solo resultados devueltos por ella y dirigir a la ficha de producto correspondiente.
 
-Tienda pública: `https://relic-mockup.vercel.app`  
+Tienda pública: `https://relic-mockup.vercel.app`
 Base de API: `https://relic-mockup.vercel.app/api/v1`
 
 ## Alcance autorizado para el bot
@@ -147,4 +147,3 @@ La implementación de esa herramienta debe añadir siempre `inStock=true` y `lim
 - El carrito es local al navegador.
 - La API de catálogo está publicada junto con el frontend en Vercel.
 - Las modificaciones hechas mediante rutas administrativas no deben usarse para una integración pública.
-
